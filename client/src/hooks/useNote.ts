@@ -1,6 +1,8 @@
 import { useGlobalContext } from "../context/GlobalContext";
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const useNote = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -10,7 +12,7 @@ const useNote = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/notes");
+      const response = await fetch(`${API_URL}/api/notes`);
       const notes = await response.json();
       localStorage.setItem("notes", JSON.stringify(notes));
       dispatch({ type: "SET_NOTES", payload: notes });
@@ -25,7 +27,7 @@ const useNote = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/notes", {
+      const response = await fetch(`${API_URL}/api/notes`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -53,7 +55,7 @@ const useNote = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/notes/${note.id}`, {
+      const response = await fetch(`${API_URL}/api/notes/${note.id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -82,7 +84,7 @@ const useNote = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/notes/${id}`, {
+      const response = await fetch(`${API_URL}/api/notes/${id}`, {
         method: "DELETE",
         headers: {
           "content-type": "application/json",

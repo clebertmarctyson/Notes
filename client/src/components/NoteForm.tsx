@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useNote from "../hooks/useNote";
 import { useGlobalContext } from "../context/GlobalContext";
+import Loading from "./Loading";
 
 const NoteForm = () => {
   const { isLoading, addNewNote, updateNote } = useNote();
@@ -29,13 +30,13 @@ const NoteForm = () => {
 
   return (
     <form
-      className="bg-base-200 flex-1 flex flex-col p-4 gap-4"
+      className="bg-base-200 md:flex-1 flex flex-col p-4 gap-4"
       onSubmit={handleCreateNote}
     >
       <input
         type="text"
         placeholder="Title"
-        className="input"
+        className="input p-2"
         value={note ? note.title : title}
         onChange={(e) => {
           state.note
@@ -48,7 +49,7 @@ const NoteForm = () => {
       />
       <textarea
         placeholder="Content"
-        className="flex-1 input resize-none"
+        className="flex-1 input resize-none p-2"
         value={note ? note.content : content}
         onChange={(e) => {
           state.note
@@ -60,11 +61,14 @@ const NoteForm = () => {
         }}
       ></textarea>
 
-      <button
-        type="submit"
-        className={`btn btn-primary ${isLoading && "btn-primary-ghost"}`}
-      >
-        {state.note ? "SAVE" : "ADD"}
+      <button type="submit" className={`btn btn-primary`} disabled={isLoading}>
+        {isLoading ? (
+          <Loading classes="loading-sm bg-neutral-100" />
+        ) : state.note ? (
+          "SAVE"
+        ) : (
+          "ADD"
+        )}
       </button>
     </form>
   );

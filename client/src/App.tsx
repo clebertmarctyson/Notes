@@ -3,7 +3,7 @@ import NoteForm from "./components/NoteForm";
 
 const App = () => {
   return (
-    <div className="flex overflow-hidden w-screen h-screen">
+    <div className="flex flex-col-reverse md:flex-row overflow-hidden w-screen h-screen">
       {/* Note List */}
       <Notes />
 

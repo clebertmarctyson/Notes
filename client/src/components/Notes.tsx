@@ -15,16 +15,16 @@ const Notes = () => {
   }, []);
 
   return (
-    <div className="border-r-2 p-4 w-[20rem] overflow-hidden">
+    <div className="flex-1 md:flex-none md:border-r-2 p-4 pb-8 w-full h-auto md:h-screen md:w-[20rem] overflow-hidden">
       <h1 className="font-bold text-3xl my-4">Notes</h1>
       {isLoading ? (
-        <Loading />
+        <Loading size={"loading-lg"} />
       ) : state.notes.length === 0 ? (
         <p className="font-bold text-3xl text-gray-400 text-center mt-16">
           No Note Found
         </p>
       ) : (
-        <ul className="flex flex-col gap-1 h-[90%] overflow-y-auto scroll-smooth">
+        <ul className="w-full h-[90%] overflow-y-auto scroll-smooth">
           {state.notes.map((note) => (
             <Note key={note.id} note={note} />
           ))}

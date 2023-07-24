@@ -1,9 +1,10 @@
 import { BiTrashAlt, BiDotsVertical } from "react-icons/bi";
 import useNote from "../hooks/useNote";
 import { useGlobalContext } from "../context/GlobalContext";
+import Loading from "./Loading";
 
 const Note = ({ note }: { note: Note }) => {
-  const { deleteNote } = useNote();
+  const { deleteNote, isLoading } = useNote();
   const { dispatch } = useGlobalContext();
 
   const handleSelected = () => {
@@ -17,7 +18,9 @@ const Note = ({ note }: { note: Note }) => {
   return (
     <li
       key={note.id}
-      className="card card-bordered bg-primary-content overflow-hidden"
+      className={`w-full h-64 card bg-primary-content overflow-hidden rounded-md border-b-[.01rem] border-base-300 ${
+        isLoading ? "pointer-events-none" : ""
+      }`}
     >
       <div className="card-body">
         <h2 className="card-title">
@@ -25,7 +28,7 @@ const Note = ({ note }: { note: Note }) => {
             ? `${note.title.substring(0, 28)} ...`
             : note.title}
         </h2>
-        <p className="">
+        <p className="text-neutral-500">
           {note.content.length >= 28
             ? `${note.content.substring(0, 28)} ...`
             : note.content}
@@ -35,18 +38,24 @@ const Note = ({ note }: { note: Note }) => {
           <em className="text-xs">
             {new Date(note.createdAt!).toLocaleDateString()}
           </em>
-          <div className="card-actions">
-            <BiDotsVertical
-              size={20}
-              className="cursor-pointer text-error"
-              onClick={handleSelected}
-            />
+          <div className="card-actions flex justify-center">
+            {isLoading ? (
+              <Loading classes="loading-sm bg-neutral-100" />
+            ) : (
+              <>
+                <BiDotsVertical
+                  size={20}
+                  className="cursor-pointer text-error"
+                  onClick={handleSelected}
+                />
 
-            <BiTrashAlt
-              size={20}
-              className="cursor-pointer text-error"
-              onClick={handleRemove}
-            />
+                <BiTrashAlt
+                  size={20}
+                  className="cursor-pointer text-error"
+                  onClick={handleRemove}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>
