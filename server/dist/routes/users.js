@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const authMiddleware_1 = require("./../middlewares/authMiddleware");
+const express_1 = require("express");
+const users_1 = require("../controllers/users");
+const noteRouter = (0, express_1.Router)();
+noteRouter.post("/signup", users_1.signUpUser);
+noteRouter.post("/login", users_1.loginUser);
+noteRouter.post("/logout", users_1.logOutUser);
+noteRouter.get("/profile", authMiddleware_1.protectRoutes, users_1.getUser);
+noteRouter.put("/update", authMiddleware_1.protectRoutes, users_1.updateUser);
+noteRouter.delete("/delete", authMiddleware_1.protectRoutes, users_1.deleteUser);
+exports.default = noteRouter;
