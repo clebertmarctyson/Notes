@@ -18,7 +18,7 @@ const Note = ({ note }: { note: Note }) => {
   return (
     <li
       key={note.id}
-      className={`w-full h-64 card bg-primary-content overflow-hidden rounded-md border-b-[.01rem] border-base-300 ${
+      className={`w-full h-64 card bg-base-300 overflow-hidden rounded-md border-b-[.01rem] border-neutral ${
         isLoading ? "pointer-events-none" : ""
       }`}
     >
@@ -29,8 +29,8 @@ const Note = ({ note }: { note: Note }) => {
             : note.title}
         </h2>
         <p className="text-neutral-500">
-          {note.content.length >= 28
-            ? `${note.content.substring(0, 28)} ...`
+          {note.content.length >= 145
+            ? `${note.content.substring(0, 145)} ...`
             : note.content}
         </p>
 
