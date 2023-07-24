@@ -30,7 +30,7 @@ const NoteForm = () => {
 
   return (
     <div className="bg-base-300 md:bg-base-200 flex flex-col w-full md:h-full p-4">
-      <h1 className="font-bold text-3xl mb-4 text-center md:text-right">
+      <h1 className="font-bold text-3xl mb-2 text-center md:text-right">
         Add New Note
       </h1>
 
@@ -40,8 +40,8 @@ const NoteForm = () => {
       >
         <input
           type="text"
-          placeholder="Title"
-          className="bg-base-200 input input-primary p-3"
+          placeholder="Type the title of the note here"
+          className="bg-base-200 input border-neutral p-3"
           value={note ? note.title : title}
           onChange={(e) => {
             state.note
@@ -53,8 +53,8 @@ const NoteForm = () => {
           }}
         />
         <textarea
-          placeholder="Content"
-          className="bg-base-200 flex-1 input input-primary resize-none p-3"
+          placeholder="Type the content of the note here"
+          className="bg-base-200 flex-1 input border-neutral resize-none p-3"
           value={note ? note.content : content}
           onChange={(e) => {
             state.note
@@ -68,15 +68,15 @@ const NoteForm = () => {
 
         <button
           type="submit"
-          className={`btn btn-lg btn-primary font-bold`}
+          className={`btn btn-md btn-primary font-bold`}
           disabled={isLoading}
         >
           {isLoading ? (
             <Loading classes="loading-sm bg-neutral-100" />
           ) : state.note ? (
-            "SAVE"
+            "Save The Note"
           ) : (
-            "ADD"
+            "Add New Note"
           )}
         </button>
       </form>

@@ -16,7 +16,7 @@ const Notes = () => {
 
   return (
     <div className="bg-base-200 flex-1 md:flex-none md:border-r-2 p-4 pb-8 w-full h-auto md:h-screen md:w-[20rem] overflow-hidden">
-      <h1 className="font-bold text-3xl mb-4 text-center md:text-left">
+      <h1 className="font-bold text-3xl mb-2 text-center md:text-left">
         Notes
       </h1>
       {isLoading ? (
